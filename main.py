@@ -21,7 +21,7 @@ def process():
     for result in results:
         x = result.find("tr", id="row_glina").text
         #print(x)
-we
+
     today = date.today()
 
     dat = today.strftime("%d.%m.%Y")
@@ -32,12 +32,5 @@ we
         os.startfile(dat + ".txt")
 
 
-'''''''''
-threads experiment
-for i in range(30):
-    x = threading.Thread(target = )
-    x.start()
 
-print('Active threads ', threading.activeCount())
-'''''''''
 process()
