@@ -31,7 +31,5 @@ class Main():
             os.startfile(loc + "_" +dat + ".txt")
 
 
-
-
 m = Main()
 m.process()
