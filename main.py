@@ -6,31 +6,34 @@ from bs4 import BeautifulSoup
 from datetime import date
 
 
+class Main():
+    def process(self):
+        loc = input("Localitate: ").lower()
+        requests.get("http://ipinfo.io")
+        URL = "https://covid19ilfov.ro/"
+        page = requests.get(URL)
 
-def process():
-    requests.get("http://ipinfo.io")
-    URL = "https://covid19ilfov.ro/"
-    page = requests.get(URL)
-
-    soup = BeautifulSoup(page.content, "html.parser")
-
-
-
-    results = soup.find_all("section", class_="corona-count-section home-4 bg-corona padding-tb pt-0")
-
-    for result in results:
-        x = result.find("tr", id="row_glina").text
-        #print(x)
-
-    today = date.today()
-
-    dat = today.strftime("%d.%m.%Y")
-
-    with open(dat + ".txt", "w") as handler:
-        handler.write(x.strip())
-        handler.close()
-        os.startfile(dat + ".txt")
+        soup = BeautifulSoup(page.content, "html.parser")
 
 
 
-process()
+        results = soup.find_all("section", class_="corona-count-section home-4 bg-corona padding-tb pt-0")
+
+        for result in results:
+            x = result.find("tr", id=f"row_{loc}").text
+            #print(x)
+
+        today = date.today()
+
+        dat = today.strftime("%d.%m.%Y")
+
+        with open(loc + "_" + dat + ".txt", "w") as handler:
+            handler.write(x.strip())
+            handler.close()
+            os.startfile(loc + "_" +dat + ".txt")
+
+
+
+
+m = Main()
+m.process()
