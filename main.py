@@ -28,7 +28,7 @@ class Main():
         with open(name + "_" + dat + ".txt", "w") as handler:
             handler.write(x.strip())
             handler.close()
-            os.startfile(loc + "_" +dat + ".txt")
+            os.startfile(loc + "_" + dat + ".txt")
 
 
 m = Main()
