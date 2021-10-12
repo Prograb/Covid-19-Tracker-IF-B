@@ -7,7 +7,6 @@ from datetime import date
 class Main():
     def process(self):
         loc = input("Localitate: ").lower()
-        requests.get("http://ipinfo.io")
         URL = "https://covid19ilfov.ro/"
         page = requests.get(URL)
 
@@ -20,6 +19,7 @@ class Main():
         for result in results:
             x = result.find("tr", id=f"row_{loc}").text
             #print(x)
+
         #declaring filename related values
         today = date.today()
         name = loc.title()
