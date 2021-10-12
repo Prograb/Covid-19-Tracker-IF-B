@@ -20,12 +20,12 @@ class Main():
         for result in results:
             x = result.find("tr", id=f"row_{loc}").text
             #print(x)
-
+        #declaring filename related values
         today = date.today()
-
+        name = loc.title()
         dat = today.strftime("%d.%m.%Y")
 
-        with open(loc + "_" + dat + ".txt", "w") as handler:
+        with open(name + "_" + dat + ".txt", "w") as handler:
             handler.write(x.strip())
             handler.close()
             os.startfile(loc + "_" +dat + ".txt")
