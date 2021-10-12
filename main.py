@@ -1,7 +1,5 @@
-import time
 import requests
 import os
-import threading
 from bs4 import BeautifulSoup
 from datetime import date
 
