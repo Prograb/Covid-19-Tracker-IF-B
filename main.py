@@ -20,7 +20,6 @@ class Main():
             x = result.find("tr", id=f"row_{loc}").text
             #print(x)
 
-        #declaring filename related values
         today = date.today()
         name = loc.title()
         dat = today.strftime("%d.%m.%Y")
