@@ -1,34 +1,52 @@
 import requests
 import os
+import threading
 from bs4 import BeautifulSoup
 from datetime import date
+import threading
+import PySimpleGUI as sg
 
-
-class Main():
-    def process(self):
-        loc = input("Localitate: ").lower()
-        URL = "https://covid19ilfov.ro/"
-        page = requests.get(URL)
-
-        soup = BeautifulSoup(page.content, "html.parser")
+version = "v1.0.1"
 
 
 
-        results = soup.find_all("section", class_="corona-count-section home-4 bg-corona padding-tb pt-0")
+def process():
+    requests.get("http://ipinfo.io")
+    URL = "https://covid19ilfov.ro/"
+    page = requests.get(URL)
 
-        for result in results:
-            x = result.find("tr", id=f"row_{loc}").text
-            #print(x)
+    soup = BeautifulSoup(page.content, "html.parser")
 
-        today = date.today()
-        name = loc.title()
-        dat = today.strftime("%d.%m.%Y")
+    results = soup.find_all("section", class_="corona-count-section home-4 bg-corona padding-tb pt-0")
 
-        with open(name + "_" + dat + ".txt", "w") as handler:
-            handler.write(x.strip())
-            handler.close()
-            os.startfile(loc + "_" + dat + ".txt")
+    for result in results:
+       global x
+       x = result.find("tr", id="row_glina").text
+        #print(x)
+
+    today = date.today()
+
+    dat = today.strftime("%d.%m.%Y")
+
+    with open(dat + ".txt", "w+") as handler:
+        handler.write(x.strip())
+        global y
+        y = handler.readline(6)
+        handler.close()
 
 
-m = Main()
-m.process()
+        #os.startfile(dat + ".txt")
+
+
+process()
+def GUI():
+    layout = [[sg.Text(f"{x}")],[sg.Button("EE")]]
+
+    window = sg.Window(f'Covid Tracker {version}', layout, resizable=True)
+
+    event, values = window.read()
+    window.maximize()
+
+    window.close()
+
+GUI()
