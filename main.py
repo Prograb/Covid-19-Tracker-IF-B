@@ -42,7 +42,7 @@ process()
 def GUI():
     layout = [[sg.Text(f"{x}")]]
 
-    window = sg.Window(f'Covid Tracker {version}', layout, resizable=True)
+    window = sg.Window(f'Covid Tracker {version}', layout, resizable=True, size=(290, 250))
 
     event, values = window.read()
     window.maximize()
