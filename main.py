@@ -40,7 +40,7 @@ def process():
 
 process()
 def GUI():
-    layout = [[sg.Text(f"{x}")],[sg.Button("EE")]]
+    layout = [[sg.Text(f"{x}")]]
 
     window = sg.Window(f'Covid Tracker {version}', layout, resizable=True)
 
