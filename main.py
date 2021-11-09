@@ -1,9 +1,6 @@
 import requests
-import os
-import threading
 from bs4 import BeautifulSoup
 from datetime import date
-import threading
 import PySimpleGUI as sg
 
 version = "v1.0.1"
@@ -11,7 +8,6 @@ version = "v1.0.1"
 
 
 def process():
-    requests.get("http://ipinfo.io")
     URL = "https://covid19ilfov.ro/"
     page = requests.get(URL)
 
@@ -42,10 +38,12 @@ process()
 def GUI():
     layout = [[sg.Text(f"{x}")]]
 
-    window = sg.Window(f'Covid Tracker {version}', layout, resizable=True, size=(290, 250))
+    window = sg.Window(f'Covid Tracker {version}', layout, resizable=False, size=(290, 250))
 
-    event, values = window.read()
-    window.maximize()
+    while True:
+        event, values = window.read()
+        if event in (sg.WIN_CLOSED, 'Cancel'):
+            break
 
     window.close()
 
